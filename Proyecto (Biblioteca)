@@ -1,0 +1,76 @@
+def sesion(name,password):
+    if usuario.usuario == name and usuario.Contrasena ==password:
+        return True
+    else:
+        return False
+
+
+class biblioteca:
+    def __init__(self):
+
+        self.libros= []
+
+    def agregar_libro(self):
+        nombre=input("Ingresa el titulo: ")
+        autor= input("Ingresa el autor: ")
+        genero= input("Ingresa el genero: ")
+        new_libro= libro(nombre,autor,genero)
+        self.libros.append(new_libro)
+    def mostrar(self):
+        for Libro in self.libros:
+            print(f"Título: {Libro.nombre}, Autor: {Libro.autor}, Género: {Libro.genero}")
+    def consultar_libro(self,consultar):
+        encontrado = False
+        for libros in self.libros:
+            if libros.nombre == consultar:
+                encontrado = True
+                if libros.disponibilidad:
+                    print(f"El libro {libros.nombre} está disponible en la biblioteca.")
+                else:
+                    print(f"El libro {libros.nombre} está prestado.")
+                break
+        if not encontrado:
+            print(f"El libro {consultar} no existe en la biblioteca.")
+
+"""def prestar(self, encontrado):
+    biblioteca.consultar_libro()== True
+    for libro in self.libros:
+        if libro.disponibilidad == True:
+            libro.prestado()"""
+
+
+class libro:
+    def __init__(self, nombre, autor, genero):
+        self.nombre = nombre
+        self.autor = autor
+        self.genero = genero
+        self.disponibilidad= True
+    def prestado(self):
+        if self.disponibilidad:
+            self.disponibilidad= False
+            return True
+        return False
+    def devuelto(self):
+        self.disponibilidad= True
+
+class usuario:
+    def __init__(self, name= "Alexis", password=12345):
+        self.usuario= name
+        self.Contrasena= password
+
+if __name__=="__main__":
+    usuario=usuario()
+    biblioteca=biblioteca()
+
+
+x = input("Ingresa tu usuario: ")
+z = int(input("Ingresa tu contraseña: "))
+
+if sesion(x,z):
+    biblioteca.agregar_libro()
+    biblioteca.agregar_libro()
+    consulta = input("Ingrese el nombre del libro: ")
+    biblioteca.consultar_libro(consulta)
+    biblioteca.mostrar()
+else:
+    print("Usuario o contraseña invalido. ")
